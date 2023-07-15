@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class InputView {
 
     public static final String INVALID_INPUT_MESSAGE = "적절하지 않은 명령어입니다";
+    
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {

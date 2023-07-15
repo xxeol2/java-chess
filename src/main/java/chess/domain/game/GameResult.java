@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class GameResult {
 
     private static final double DUPLICATED_PAWN_DEDUCTION_SCORE = 0.5;
-
     private static final long INITIAL_KING_COUNT = 2;
 
     private final Map<Position, Piece> positionToPiece;
