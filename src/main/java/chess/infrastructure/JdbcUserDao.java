@@ -69,7 +69,7 @@ public class JdbcUserDao implements UserDao {
 
     private User createUser(ResultSet resultSet) throws SQLException {
         return new User(
-                resultSet.getInt("id"),
+                (long) resultSet.getInt("id"),
                 resultSet.getString("name")
         );
     }

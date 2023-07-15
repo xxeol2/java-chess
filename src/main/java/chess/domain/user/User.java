@@ -2,17 +2,17 @@ package chess.domain.user;
 
 public class User {
 
-    private long id;
+    private final Long id;
     private final String name;
 
     public User(String name) {
-        validate(name);
-        this.name = name;
+        this(null, name);
     }
 
-    public User(long id, String name) {
-        this(name);
+    public User(Long id, String name) {
+        validate(name);
         this.id = id;
+        this.name = name;
     }
 
     private void validate(String name) {

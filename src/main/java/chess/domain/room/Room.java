@@ -4,19 +4,16 @@ import chess.domain.piece.Color;
 
 public class Room {
 
-    private long id;
+    private final Long id;
     private final long userId;
     private final String name;
     private final Color winner;
 
     public Room(long userId, String name) {
-        validate(name);
-        this.userId = userId;
-        this.name = name;
-        this.winner = Color.NONE;
+        this(null, userId, name, Color.NONE);
     }
 
-    public Room(long id, long userId, String name, Color winner) {
+    public Room(Long id, long userId, String name, Color winner) {
         validate(name);
         this.id = id;
         this.userId = userId;

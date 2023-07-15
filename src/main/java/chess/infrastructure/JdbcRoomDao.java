@@ -90,7 +90,7 @@ public class JdbcRoomDao implements RoomDao {
 
     private Room createRoom(ResultSet resultSet) throws SQLException {
         return new Room(
-                resultSet.getInt("id"),
+                (long) resultSet.getInt("id"),
                 resultSet.getInt("user_id"),
                 resultSet.getString("name"),
                 Color.valueOf(resultSet.getString("winner"))
