@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JdbcUserDao implements UserDao {
 
@@ -34,7 +35,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User findByName(String name) {
+    public Optional<User> findByName(String name) {
         final String query = "SELECT id, name FROM User WHERE name = ?";
         try (final Connection connection = JdbcConnection.getConnection();
                 final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -42,12 +43,12 @@ public class JdbcUserDao implements UserDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return createUser(resultSet);
+                return Optional.of(createUser(resultSet));
             }
+            return Optional.empty();
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
-        return null;
     }
 
     @Override

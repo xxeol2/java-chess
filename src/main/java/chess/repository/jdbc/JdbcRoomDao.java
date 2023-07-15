@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JdbcRoomDao implements RoomDao {
 
@@ -58,7 +59,7 @@ public class JdbcRoomDao implements RoomDao {
     }
 
     @Override
-    public Room findByUserIdAndName(long userId, String name) {
+    public Optional<Room> findByUserIdAndName(long userId, String name) {
         final String query = "SELECT id, user_id, name, winner FROM Room WHERE user_id = ? AND name = ?";
         try (final Connection connection = JdbcConnection.getConnection();
                 final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -66,9 +67,9 @@ public class JdbcRoomDao implements RoomDao {
             preparedStatement.setString(2, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return createRoom(resultSet);
+                return Optional.of(createRoom(resultSet));
             }
-            return null;
+            return Optional.empty();
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }

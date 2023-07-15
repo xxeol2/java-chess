@@ -2,12 +2,13 @@ package chess.repository;
 
 import chess.domain.user.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao {
 
     long save(User user);
 
-    User findByName(String name);
+    Optional<User> findByName(String name);
 
     List<User> findAll();
 }

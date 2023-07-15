@@ -21,17 +21,15 @@ public class UserService {
     }
 
     public User findByName(String name) {
-        User user = userDao.findByName(name);
-        if (user == null) {
-            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
-        }
-        return user;
+        return userDao.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
     }
 
     public long create(String name) {
-        if (userDao.findByName(name) != null) {
-            throw new IllegalArgumentException("이미 사용중인 이름입니다.");
-        }
+        userDao.findByName(name)
+                .ifPresent(user -> {
+                    throw new IllegalArgumentException("이미 사용중인 이름입니다.");
+                });
         User user = new User(name);
         return userDao.save(user);
     }
