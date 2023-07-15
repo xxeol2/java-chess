@@ -13,17 +13,12 @@ import java.util.List;
 
 public class JdbcUserDao implements UserDao {
 
-    private final Connection connection;
-
-    public JdbcUserDao() {
-        this.connection = JdbcConnection.getConnection();
-    }
-
     @Override
     public long save(User user) {
         final String query = "INSERT INTO User (name) VALUES (?)";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement =
+                        connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.executeUpdate();
             return getGeneratedId(preparedStatement);
@@ -41,7 +36,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User findByName(String name) {
         final String query = "SELECT id, name FROM User WHERE name = ?";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, name);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -57,7 +53,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> findAll() {
         final String query = "SELECT id, name FROM User";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<User> users = new ArrayList<>();
             while (resultSet.next()) {

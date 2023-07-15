@@ -14,17 +14,12 @@ import java.util.List;
 
 public class JdbcRoomDao implements RoomDao {
 
-    private final Connection connection;
-
-    public JdbcRoomDao() {
-        this.connection = JdbcConnection.getConnection();
-    }
-
     @Override
     public long save(Room room) {
         final String query = "INSERT INTO Room (user_id, name, winner) VALUES (?, ?, ?)";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement
+                        = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, room.getUserId());
             preparedStatement.setString(2, room.getName());
             preparedStatement.setString(3, room.getWinner().name());
@@ -44,7 +39,8 @@ public class JdbcRoomDao implements RoomDao {
     @Override
     public List<Room> findAllByUserId(long userId) {
         final String query = "SELECT id, user_id, name, winner FROM Room WHERE user_id = ?";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             return createRooms(resultSet);
@@ -64,8 +60,10 @@ public class JdbcRoomDao implements RoomDao {
     @Override
     public Room findByUserIdAndName(long userId, String name) {
         final String query = "SELECT id, user_id, name, winner FROM Room WHERE user_id = ? AND name = ?";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            setStatement(userId, name, preparedStatement);
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setLong(1, userId);
+            preparedStatement.setString(2, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return createRoom(resultSet);
@@ -76,15 +74,11 @@ public class JdbcRoomDao implements RoomDao {
         }
     }
 
-    private void setStatement(long userId, String name, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setLong(1, userId);
-        preparedStatement.setString(2, name);
-    }
-
     @Override
     public void updateWinner(long id, Color winner) {
         final String query = "UPDATE Room SET winner = ? WHERE id = ?";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, winner.name());
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();

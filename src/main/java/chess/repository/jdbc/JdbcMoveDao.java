@@ -13,17 +13,12 @@ import java.util.List;
 
 public class JdbcMoveDao implements MoveDao {
 
-    private final Connection connection;
-
-    public JdbcMoveDao() {
-        this.connection = JdbcConnection.getConnection();
-    }
-
     @Override
     public void save(long roomId, Move move) {
         final String query = "INSERT INTO Move (room_id, source, target) VALUES (?, ?, ?)";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement =
+                        connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, roomId);
             preparedStatement.setString(2, move.getSource().getName());
             preparedStatement.setString(3, move.getTarget().getName());
@@ -36,7 +31,8 @@ public class JdbcMoveDao implements MoveDao {
     @Override
     public List<Move> findAllByRoomId(long roomId) {
         final String query = "SELECT source, target FROM Move WHERE room_id = ? ORDER BY created_at";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (final Connection connection = JdbcConnection.getConnection();
+                final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, roomId);
             ResultSet resultSet = preparedStatement.executeQuery();
             return createMoves(resultSet);
