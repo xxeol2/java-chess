@@ -42,7 +42,7 @@ public class UserController {
 
     private void printAskUserNameMessages() {
         List<String> userNames = userService.findUserNames();
-        if (userNames.size() > 0) {
+        if (!userNames.isEmpty()) {
             outputView.printSelectUserMessage(userNames);
         }
         outputView.printCreateUserMessage();
