@@ -29,16 +29,16 @@ public abstract class Piece {
         return color == target.color;
     }
 
-    public boolean isRightTurn(Color turn) {
+    public boolean checkColor(Color turn) {
         return this.color == turn;
     }
 
-    public boolean isSameType(PieceType type) {
+    public boolean checkType(PieceType type) {
         return this.type == type;
     }
 
-    public PieceType getType() {
-        return type;
+    public String getName() {
+        return type.name();
     }
 
     public Color getColor() {

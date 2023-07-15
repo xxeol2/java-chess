@@ -120,7 +120,7 @@ public class BoardTest {
         Map<Position, Piece> pieces = board.getPieces();
         assertThat(pieces.get(source))
                 .isNull();
-        assertThat(pieces.get(target3).getType())
-                .isSameAs(PieceType.KNIGHT);
+        assertThat(pieces.get(target3).getName())
+                .isSameAs(PieceType.KNIGHT.name());
     }
 }

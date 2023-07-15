@@ -25,7 +25,7 @@ public class PieceTest {
         }
 
         @Override
-        public PieceType getType() {
+        public String getName() {
             return null;
         }
     }
@@ -53,8 +53,8 @@ public class PieceTest {
     void hasColor() {
         Piece piece = new PieceImplement(WHITE);
 
-        assertThat(piece.isRightTurn(WHITE)).isTrue();
-        assertThat(piece.isRightTurn(BLACK)).isFalse();
+        assertThat(piece.checkColor(WHITE)).isTrue();
+        assertThat(piece.checkColor(BLACK)).isFalse();
     }
 
     @DisplayName("점수를 확인할 수 있다")

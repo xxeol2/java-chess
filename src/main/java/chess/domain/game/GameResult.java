@@ -41,7 +41,7 @@ public class GameResult {
 
     private double calculateDeductionScore(Color color) {
         Map<Integer, List<Piece>> fileToPawn = positionToPiece.entrySet().stream()
-                .filter(it -> it.getValue().getColor() == color && it.getValue().isSameType(PieceType.PAWN))
+                .filter(it -> it.getValue().getColor() == color && it.getValue().checkType(PieceType.PAWN))
                 .collect(groupingBy(it -> it.getKey().getFileIndex(),
                         mapping(Entry::getValue, Collectors.toList())));
 
@@ -54,7 +54,7 @@ public class GameResult {
 
     public boolean isGameOver() {
         long kingCount = positionToPiece.values().stream()
-                .filter(piece -> piece.isSameType(PieceType.KING))
+                .filter(piece -> piece.checkType(PieceType.KING))
                 .count();
         return kingCount != INITIAL_KING_COUNT;
     }
@@ -68,7 +68,7 @@ public class GameResult {
 
     private Color getWinnerOfEnd() {
         Piece king = positionToPiece.values().stream()
-                .filter(piece -> piece.isSameType(PieceType.KING))
+                .filter(piece -> piece.checkType(PieceType.KING))
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("살아있는 왕이 없습니다."));
         return king.getColor();

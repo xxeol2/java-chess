@@ -20,7 +20,7 @@ public class Board {
     public boolean checkTurn(Position position, Color turn) {
         Piece piece = pieces.get(position);
         validatePieceToMove(piece);
-        return piece.isRightTurn(turn);
+        return piece.checkColor(turn);
     }
 
     public void move(Position source, Position target) {

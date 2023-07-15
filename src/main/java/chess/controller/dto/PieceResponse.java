@@ -21,7 +21,7 @@ public class PieceResponse {
         int fileIndex = position.getFileIndex();
         int rankIndex = position.getRankIndex();
         String color = piece.getColor().name();
-        String pieceType = piece.getType().name();
+        String pieceType = piece.getName();
         return new PieceResponse(fileIndex, rankIndex, color, pieceType);
     }
 
