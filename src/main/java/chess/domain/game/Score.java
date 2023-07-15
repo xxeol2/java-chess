@@ -1,7 +1,7 @@
 package chess.domain.game;
 
 public class Score {
-    
+
     private final double value;
 
     private Score(double score) {
@@ -21,6 +21,10 @@ public class Score {
 
     public double getValue() {
         return value;
+    }
+
+    public boolean isGreaterThan(Score other) {
+        return this.value > other.value;
     }
 
     @Override

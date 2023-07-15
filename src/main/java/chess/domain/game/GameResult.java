@@ -75,10 +75,10 @@ public class GameResult {
     }
 
     private Color getCurrentWinner(Score blackScore, Score whiteScore) {
-        if (blackScore.getValue() > whiteScore.getValue()) {
+        if (blackScore.isGreaterThan(whiteScore)) {
             return Color.BLACK;
         }
-        if (blackScore.getValue() < whiteScore.getValue()) {
+        if (whiteScore.isGreaterThan(blackScore)) {
             return Color.WHITE;
         }
         return Color.NONE;
