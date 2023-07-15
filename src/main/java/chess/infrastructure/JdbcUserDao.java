@@ -1,6 +1,7 @@
 package chess.infrastructure;
 
 import chess.application.dao.UserDao;
+import chess.config.JdbcConnection;
 import chess.domain.user.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

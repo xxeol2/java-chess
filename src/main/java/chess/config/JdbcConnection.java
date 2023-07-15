@@ -1,4 +1,4 @@
-package chess.infrastructure;
+package chess.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

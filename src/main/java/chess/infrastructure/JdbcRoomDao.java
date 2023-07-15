@@ -1,6 +1,7 @@
 package chess.infrastructure;
 
 import chess.application.dao.RoomDao;
+import chess.config.JdbcConnection;
 import chess.domain.piece.Color;
 import chess.domain.room.Room;
 import java.sql.Connection;
