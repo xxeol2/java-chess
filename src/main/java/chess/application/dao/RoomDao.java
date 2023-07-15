@@ -1,4 +1,4 @@
-package chess.repository;
+package chess.application.dao;
 
 import chess.domain.piece.Color;
 import chess.domain.room.Room;

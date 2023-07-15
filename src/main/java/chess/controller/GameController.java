@@ -1,14 +1,12 @@
 package chess.controller;
 
-import static chess.controller.IllegalArgumentExceptionHandler.repeat;
-
+import chess.application.GameService;
 import chess.controller.dto.PieceResponse;
 import chess.domain.game.Game;
 import chess.domain.game.GameResult;
 import chess.domain.piece.Piece;
 import chess.domain.position.Move;
 import chess.domain.position.Position;
-import chess.service.GameService;
 import chess.view.InputView;
 import chess.view.OutputView;
 import chess.view.dto.game.GameCommandType;
@@ -33,7 +31,7 @@ public class GameController {
     }
 
     public void play(long roomId) {
-        repeat(() -> askToStart(roomId));
+        IllegalArgumentExceptionHandler.repeat(() -> askToStart(roomId));
     }
 
     private void askToStart(long roomId) {
@@ -55,7 +53,7 @@ public class GameController {
 
     private void process(Game game) {
         outputView.printPieces(createResponses(game.getPieces()));
-        while (repeat(() -> playOnce(game)) != GameCommandType.END) {
+        while (IllegalArgumentExceptionHandler.repeat(() -> playOnce(game)) != GameCommandType.END) {
             outputView.printPieces(createResponses(game.getPieces()));
         }
     }

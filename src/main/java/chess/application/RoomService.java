@@ -1,8 +1,8 @@
-package chess.service;
+package chess.application;
 
+import chess.application.dao.RoomDao;
 import chess.domain.piece.Color;
 import chess.domain.room.Room;
-import chess.repository.RoomDao;
 import java.util.List;
 import java.util.stream.Collectors;
 

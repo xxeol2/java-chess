@@ -1,8 +1,7 @@
-package chess.repository.jdbc;
+package chess.infrastructure;
 
-import chess.config.JdbcConnection;
+import chess.application.dao.MoveDao;
 import chess.domain.position.Move;
-import chess.repository.MoveDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

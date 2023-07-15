@@ -1,9 +1,7 @@
 package chess.controller;
 
-import static chess.controller.IllegalArgumentExceptionHandler.repeat;
-
+import chess.application.UserService;
 import chess.domain.user.User;
-import chess.service.UserService;
 import chess.view.InputView;
 import chess.view.OutputView;
 import chess.view.dto.ready.ReadyCommandType;
@@ -26,7 +24,7 @@ public class UserController {
     }
 
     public void login() {
-        long userId = repeat(this::selectUser);
+        long userId = IllegalArgumentExceptionHandler.repeat(this::selectUser);
         roomController.joinRoom(userId);
     }
 

@@ -1,4 +1,4 @@
-package chess.repository;
+package chess.application.dao;
 
 import chess.domain.position.Move;
 import java.util.List;

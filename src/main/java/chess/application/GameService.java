@@ -1,9 +1,9 @@
-package chess.service;
+package chess.application;
 
+import chess.application.dao.MoveDao;
+import chess.application.dao.RoomDao;
 import chess.domain.piece.Color;
 import chess.domain.position.Move;
-import chess.repository.MoveDao;
-import chess.repository.RoomDao;
 import java.util.List;
 
 public class GameService {

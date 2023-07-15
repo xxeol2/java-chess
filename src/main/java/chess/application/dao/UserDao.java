@@ -1,4 +1,4 @@
-package chess.repository;
+package chess.application.dao;
 
 import chess.domain.user.User;
 import java.util.List;

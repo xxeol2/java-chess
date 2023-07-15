@@ -1,8 +1,6 @@
 package chess.controller;
 
-import static chess.controller.IllegalArgumentExceptionHandler.repeat;
-
-import chess.service.RoomService;
+import chess.application.RoomService;
 import chess.view.InputView;
 import chess.view.OutputView;
 import chess.view.dto.category.CategoryCommandType;
@@ -26,8 +24,8 @@ public class RoomController {
     }
 
     public void joinRoom(long userId) {
-        repeat(() -> selectCategory(userId));
-        long roomId = repeat(() -> selectRoom(userId));
+        IllegalArgumentExceptionHandler.repeat(() -> selectCategory(userId));
+        long roomId = IllegalArgumentExceptionHandler.repeat(() -> selectRoom(userId));
         gameController.play(roomId);
     }
 

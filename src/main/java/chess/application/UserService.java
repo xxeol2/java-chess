@@ -1,7 +1,7 @@
-package chess.service;
+package chess.application;
 
+import chess.application.dao.UserDao;
 import chess.domain.user.User;
-import chess.repository.UserDao;
 import java.util.List;
 import java.util.stream.Collectors;
 

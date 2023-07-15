@@ -1,9 +1,8 @@
-package chess.repository.jdbc;
+package chess.infrastructure;
 
-import chess.config.JdbcConnection;
+import chess.application.dao.RoomDao;
 import chess.domain.piece.Color;
 import chess.domain.room.Room;
-import chess.repository.RoomDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

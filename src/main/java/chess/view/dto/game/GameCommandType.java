@@ -1,7 +1,6 @@
 package chess.view.dto.game;
 
-import static chess.view.InputView.INVALID_INPUT_MESSAGE;
-
+import chess.view.InputView;
 import java.util.Set;
 
 public enum GameCommandType {
@@ -14,7 +13,7 @@ public enum GameCommandType {
         try {
             return valueOf(input);
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+            throw new IllegalArgumentException(InputView.INVALID_INPUT_MESSAGE);
         }
     }
 

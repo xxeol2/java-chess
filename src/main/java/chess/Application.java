@@ -1,17 +1,17 @@
 package chess;
 
+import chess.application.GameService;
+import chess.application.RoomService;
+import chess.application.UserService;
+import chess.application.dao.MoveDao;
+import chess.application.dao.RoomDao;
+import chess.application.dao.UserDao;
 import chess.controller.GameController;
 import chess.controller.RoomController;
 import chess.controller.UserController;
-import chess.repository.MoveDao;
-import chess.repository.RoomDao;
-import chess.repository.UserDao;
-import chess.repository.jdbc.JdbcMoveDao;
-import chess.repository.jdbc.JdbcRoomDao;
-import chess.repository.jdbc.JdbcUserDao;
-import chess.service.GameService;
-import chess.service.RoomService;
-import chess.service.UserService;
+import chess.infrastructure.JdbcMoveDao;
+import chess.infrastructure.JdbcRoomDao;
+import chess.infrastructure.JdbcUserDao;
 import chess.view.InputView;
 import chess.view.OutputView;
 import java.util.Scanner;

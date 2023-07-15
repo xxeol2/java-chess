@@ -1,6 +1,6 @@
 package chess.view.dto.ready;
 
-import static chess.view.InputView.INVALID_INPUT_MESSAGE;
+import chess.view.InputView;
 
 public enum ReadyCommandType {
 
@@ -10,7 +10,7 @@ public enum ReadyCommandType {
         try {
             return valueOf(input);
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+            throw new IllegalArgumentException(InputView.INVALID_INPUT_MESSAGE);
         }
     }
 }
