@@ -9,9 +9,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.assertj:assertj-core:3.22.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-    runtimeOnly 'mysql:mysql-connector-java:8.0.28'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.33'
 }
 
 java {
